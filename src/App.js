@@ -22,7 +22,7 @@ class App extends Component {
 
   getSampleText(){
     axios
-      .get('http://baseballipsum.apphb.com/api/?paras='+ this.state.paras +'&startwithlorem=' +this.state.lorem)
+      .get('//baseballipsum.apphb.com/api/?paras='+ this.state.paras +'&startwithlorem=' +this.state.lorem)
       .then(response => {
         let text = ''
         response.data.forEach(para => {
