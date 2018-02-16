@@ -9,7 +9,6 @@ export default class Text extends React.Component {
   }
 
   onChange = (e) => {
-    console.log('firing onchange text', e.target.value)
     this.setState({value: e.target.value}, function () {
       this.props.onChange(this.state.value);
     })
@@ -18,7 +17,7 @@ export default class Text extends React.Component {
   render() {
     return (
       <div className="form-group">
-        <label >Number of paragraphs:</label>
+        <label style={{marginRight: '10px'}}>Number of paragraphs:</label>
         <input type="number" value={this.state.value} onChange={this.onChange} className="form-control"/>
       </div>
     )

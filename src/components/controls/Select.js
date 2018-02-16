@@ -10,7 +10,6 @@ export default class Select extends React.Component {
 
 
   onChange = (e) => {
-    console.log('firing onchange select')
     this.setState({value: e.target.value}, function () {
       this.props.onChange(this.state.value);
     })
@@ -19,8 +18,8 @@ export default class Select extends React.Component {
 
   render() {
     return (
-      <div className="form-group">
-        <label >Start With Lorem:</label>
+      <div className="form-group" style={{marginLeft: '50px'}}>
+        <label style={{marginRight: '10px'}}>Start With Lorem:</label>
         <select className="form-control" onChange={this.onChange} >
           <option value="true">Yes</option>
           <option value="false">No</option>

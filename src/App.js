@@ -11,7 +11,7 @@ class App extends Component {
     super(props)
     this.state = {
       paras: 4,
-      html: true,
+      lorem: true,
       text: ''
     }
   }
@@ -22,37 +22,36 @@ class App extends Component {
 
   getSampleText(){
     axios
-      .get('http://baseballipsum.apphb.com/api/?paras='+ this.state.paras +'&startwithlorem=' +this.state.html)
+      .get('http://baseballipsum.apphb.com/api/?paras='+ this.state.paras +'&startwithlorem=' +this.state.lorem)
       .then(response => {
-        console.log(response)
         let text = ''
         response.data.forEach(para => {
           text += '<p>'+para+'</p>'
         })
-        this.setState({text: text}, function (){
-          console.log(this.state)
-        })
+        this.setState({text: text})
       })
       .catch(err => console.log('asdfasdf',err))
   }
 
-  showHtml = (x) => {
-    console.log('firing showHtml', x)
-    this.setState({html: x}, this.getSampleText())
+  showLorem = (x) => {
+    this.setState({lorem: x}, function () {
+      this.getSampleText();
+    })
   }
 
   changeParas = (number)  =>  {
-    console.log('firing changeParas', number)
-    this.setState({paras: number}, this.getSampleText())
+    this.setState({paras: number}, function (){
+      this.getSampleText();
+    })
   }
   render() {
     return (
       <div className="App container">
-        <h1>ReactJS Sample Text Generator</h1>
+        <h1>ReactJS Sample Baseball Text Generator</h1>
         <hr/>
         <form className="form-inline">
             <Text value={this.state.paras} onChange={this.changeParas}/>
-            <Select value={this.state.html} onChange={this.showHtml}/>
+            <Select value={this.state.lorem} onChange={this.showLorem}/>
         </form>
         <br/>
         <Output value={this.state.text} />
